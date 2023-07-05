@@ -1,26 +1,26 @@
 import requests
 import json
+from datetime import date
 
-HEADER = {"X-Redmine-API-Key": "9751d3c925b7bece550d2ba310aa1d3667295655"}
-URL = "http://192.168.154.128/issues/34233.json"
+
+HEADER = {
+    "Content-Type": "application/json",
+    "X-Redmine-API-Key": "9751d3c925b7bece550d2ba310aa1d3667295655"
+}
+URL = "http://192.168.154.128/issues.json"
+TODAY = date.today()
 
 data = {
 	"issue": {
-		"project_id": 118,
-		"tracker_id": 88,
-		"subject": "Hello world"
+		"project_id": 118, # Test project for me
+		"tracker_id": 88, # Tracker id 
+		"subject": f"VW380 / Нові зварні вузли /  {TODAY}"
 	}
 }
-
 DATA = json.dumps(data)
 
-print(DATA)
-
-
-
-# request = requests.get(URL, headers=HEADER)
-
-# if request.status_code == 200:
-#     print(request.json())
-# else:
-#     print(f"Error: {request.status_code}")
+request = requests.post(URL, headers=HEADER, data=DATA)
+if request.status_code == 201:
+    print(request.json())
+else:
+    print(f"Error: {request.status_code}")
