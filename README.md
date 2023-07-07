@@ -1,7 +1,7 @@
 # Red Seq
 
 
-Script checking file in folder and if file excist create issue with attached files. For you in scheduler you can compile script to exe for Windows via auto_script_to_exe. 
+Script checking file in folder and if file excist create issue with attached files. Script checking file in folder and if file excist create issue with attached files. You can convert script to exe file via [auto_script_to_exe](https://pypi.org/project/auto-py-to-exe/) and set scheduler on Windows.
 
 
 ## Example of config file
@@ -31,4 +31,4 @@ subject = VW380 / New splices
 
 [PATH]
 
-path = z:\Sequencer\Test_New_VW380\
+path = z:\path\path\
