@@ -24,7 +24,7 @@ data = {
     "issue": {
         "project_id": PROJECT,
         "tracker_id": TRACKER,
-        "subject": SUBJECT,  # {date.today()
+        "subject": SUBJECT,
         "uploads": [
         ]
     }
@@ -59,15 +59,13 @@ try:
                     response = requests.post(UPLOAD_URL, files=files, headers=headers)
                 if response.status_code == 201:
                     attachment_token = response.json().get("upload", {}).get("token")
-                # print(f"File uploaded successfully. Token: {attachment_token}")
                     data["issue"]["uploads"].append({"token": attachment_token, "filename": filename, "content_type": "text/plain"})
-            # else:
-                # write_logs("","", f"File upload failed. Error: {response.status_code}")
-        headers = {"Content-Type": "application/json", "X-Redmine-API-Ke": VALUE}
-        request = requests.post(URL, headers=headers, data=json.dumps(data))
-        write_logs(json.dumps(data), request.json(), "No error")
-    # else:
-        # write_logs("", "", f"Error: {request.status_code}")
+    headers = {"Content-Type": "application/json", "X-Redmine-API-Key": VALUE}
+    request = requests.post(URL, headers=headers, data=json.dumps(data))
+    write_logs(json.dumps(data), request.json(), "")
+    for filenama in os.listdir(PATH):
+        if os.path.isfile(os.path.join(PATH, filenama)):
+            os.remove(os.path.join(PATH, filenama))
 except FileNotFoundError as e:
     write_logs("", "", f"{e}")
 except requests.exceptions.RequestException as e:
