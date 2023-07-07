@@ -26,7 +26,7 @@ project_id = 118
 
 tracker_id = 88
 
-subject = VW380 / New splices
+subject = TEST / Test
 
 
 [PATH]
